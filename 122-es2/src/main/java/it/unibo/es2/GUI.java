@@ -17,7 +17,7 @@ public final class GUI extends JFrame {
     @Serial
     private static final long serialVersionUID = 1L;
     private final Map<JButton, Pair<Integer, Integer>> buttons = new LinkedHashMap<>();
-    private final Logics logics;
+    private final transient Logics logics;
 
     /**
      * Constructs a GUI with the specified size.
@@ -38,7 +38,7 @@ public final class GUI extends JFrame {
                 button.addActionListener(e -> {
                     final Pair<Integer, Integer> buttonPosition = buttons.get(button);
                     button.setText(logics.changeStatus(buttonPosition));
-                    if(logics.toQuit()){
+                    if (logics.toQuit()) {
                         dispose();
                     }
                 });

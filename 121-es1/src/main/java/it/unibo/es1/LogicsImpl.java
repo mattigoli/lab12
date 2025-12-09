@@ -3,13 +3,13 @@ package it.unibo.es1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Implementation of the Logics interface.
  */
 public class LogicsImpl implements Logics {
 
-    private final int size;
     private final List<Integer> buttons;
 
     /**
@@ -18,11 +18,8 @@ public class LogicsImpl implements Logics {
      * @param size the size of the logics
      */
     public LogicsImpl(final int size) {
-        this.size = size;
-        this.buttons = new ArrayList<>();
-        for (int i = 0; i < this.size; i++) {
-            this.buttons.add(0);
-        }
+        this.buttons = new ArrayList<>(size);
+        Stream.iterate(0, i -> i + 1).limit(size).forEach(i -> this.buttons.add(0));
     }
 
     /**
@@ -30,7 +27,7 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public int size() {
-        return this.size;
+        return this.buttons.size();
     }
 
     /**
@@ -46,9 +43,9 @@ public class LogicsImpl implements Logics {
      */
     @Override
     public List<Boolean> enabledStates() {
-        final List<Boolean> en = new ArrayList<>();
+        final List<Boolean> en = new ArrayList<>(this.buttons.size());
         for (final Integer i: this.buttons) {
-            en.add(i != this.size);
+            en.add(i != this.buttons.size());
         }
         return en;
     }
@@ -68,8 +65,8 @@ public class LogicsImpl implements Logics {
     @Override
     public String result() {
         final StringBuilder res = new StringBuilder("<<");
-        for (int i = 0; i < this.size; i++) {
-            res.append(i == this.size - 1 ? this.buttons.get(i) + ">>" : this.buttons.get(i) + "|");
+        for (int i = 0; i < this.buttons.size(); i++) {
+            res.append(i == this.buttons.size() - 1 ? this.buttons.get(i) + ">>" : this.buttons.get(i) + "|");
         }
         return res.toString();
     }
@@ -81,7 +78,7 @@ public class LogicsImpl implements Logics {
     public boolean toQuit() {
         final int val = this.buttons.get(0);
         boolean equal = false;
-        for (int i = 1; i < this.size; i++) {
+        for (int i = 1; i < this.buttons.size(); i++) {
             equal = this.buttons.get(i) == val;
             if (!equal) {
                 return equal;

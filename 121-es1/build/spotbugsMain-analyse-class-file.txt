@@ -1,0 +1,4 @@
+C:\Users\mattia.golinucci2\Desktop\12\lab12\121-es1\build\classes\java\main\it\unibo\es1\GUI.class
+C:\Users\mattia.golinucci2\Desktop\12\lab12\121-es1\build\classes\java\main\it\unibo\es1\Logics.class
+C:\Users\mattia.golinucci2\Desktop\12\lab12\121-es1\build\classes\java\main\it\unibo\es1\LogicsImpl.class
+C:\Users\mattia.golinucci2\Desktop\12\lab12\121-es1\build\classes\java\main\it\unibo\es1\Test.class
